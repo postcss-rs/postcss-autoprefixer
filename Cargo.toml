@@ -9,3 +9,4 @@ edition = "2021"
 tokenizer = { git = "https://github.com/postcss-rs/postcss-rs" }
 recursive-parser = { git = "https://github.com/postcss-rs/postcss-rs" }
 regex = "1.5.4"
+once_cell = "1.8.0"

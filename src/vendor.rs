@@ -1,24 +1,13 @@
+use std::borrow::Cow;
 
-// use recursive_parser::parser::Prop;
-// module.exports = {
-//   prefix(prop) {
-//     let match = prop.match(/^(-\w+-)/)
-//     if (match) {
-//       return match[0]
-//     }
+use crate::regex;
 
-//     return ''
-//   },
-
-//   unprefixed(prop) {
-//     return prop.replace(/^-\w+-/, '')
-//   }
-// }
-
-pub fn get_prefix() {}
-
-pub fn remove_prefix(prop: &str) {
-
+pub fn get_prefix<'a>(prop: &'a str) -> Option<regex::Match> {
+    let regex = regex!(r"^(-\w+-)");
+    regex.captures(prop).and_then(|cap| cap.get(0))
 }
 
-
+pub fn remove_prefix<'a>(prop: &'a str) -> Cow<'a, str> {
+    let regex = regex!(r"^-\w+-");
+    regex.replace(prop, "")
+}
